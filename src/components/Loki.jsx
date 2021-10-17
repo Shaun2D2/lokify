@@ -31,7 +31,7 @@ const LokiForeground = styled.div`
     z-index: 10;
 `;
 
-export const Loki = ({ text, glow, blurFilter, finishedFn }) => {
+export const Loki = ({ text, glow, blurFilter, finishedFn, animationTime, textChangeSpeed }) => {
     const textArray = useMemo(() => text.split(''), [text.toUpperCase()]);
 
     const [fonts, setFonts] = useState(() => returnUniqueFonts(textArray.length));
@@ -39,13 +39,13 @@ export const Loki = ({ text, glow, blurFilter, finishedFn }) => {
     useEffect(() => {
        const interval = setInterval(() => {
             setFonts(returnUniqueFonts(textArray.length));
-        }, 500);
+        }, textChangeSpeed);
 
         setTimeout(() => {
             clearInterval(interval);
 
             if (finishedFn) finishedFn();
-        }, 15000);
+        }, animationTime);
     }, [setFonts]);
 
     return (
@@ -60,5 +60,7 @@ Loki.defaultProps = {
     glow: true,
     text: 'LOKI',
     blurFilter: true,
-    finishedFn: null
+    finishedFn: null,
+    animationTime: 15000,
+    textChangeSpeed: 500,
 }
