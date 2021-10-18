@@ -2,7 +2,7 @@
   "name": "@shaun2d2/lokify",
   "version": "1.0.0",
   "description": "lokify someone's name",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx babel ./src -d ./dist --ignore ./src/stories/*",
     "test": "echo \"Error: no test specified\" && exit 1",

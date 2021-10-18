@@ -15,7 +15,7 @@ const LokiCharacter = styled.span`
     margin-left: 2.25rem;
     margin-right: 2.25rem;
     font-family: ${({ font }) => font};
-    text-shadow: 0 0 20px #fff, 0 0 20px #fff;
+    text-shadow: 0 0 30px #fff; // , 0 0 30px #fff
     color: #FFF;
     opacity: 0;
     animation: ${fadeIn} 5s linear forwards, ${zoomIn} 10s ease-in forwards;
@@ -35,12 +35,11 @@ const LokiForeground = styled.div`
  * next we need to make each individual letter have a jiggle, a font glow, and possibly a size.
  * Maybe we can do a config object for each letter that gets generated randomly when the font gets generated
  */
-
-const EXAMPLE_FONT_CONFIG = {
-    fontFamily: 'some-cool-font', // random font selected
-    jiggle: 'top', // random jiggle position
-    glow: 1 // glow intensity
-}
+// const EXAMPLE_FONT_CONFIG = {
+//     fontFamily: 'some-cool-font', // random font selected
+//     jiggle: 'top', // random jiggle position
+//     glow: 1 // glow intensity
+// }
 
 export const Loki = ({ text, glow, blurFilter, finishedFn, animationTime, textChangeSpeed }) => {
     const textArray = useMemo(() => text.split(''), [text.toUpperCase()]);
