@@ -29,7 +29,5 @@ export const returnUniqueFonts = (count) => {
         if (!fonts.find((item) => item === selectedFont)) fonts.push(selectedFont);
     }
 
-    console.log(fonts);
-
     return fonts;
 };
