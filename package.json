@@ -1,5 +1,5 @@
 {
-  "name": "@shaun2d2/lokify",
+  "name": "lokify",
   "version": "1.0.0",
   "description": "lokify someone's name",
   "main": "dist/index.js",
