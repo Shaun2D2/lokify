@@ -19,6 +19,11 @@ const LokiCharacter = styled.span`
     color: #FFF;
     opacity: 0;
     animation: ${fadeIn} 5s linear forwards, ${zoomIn} 10s ease-in forwards;
+    @media(max-width: 690px) {
+        font-size: 2.5rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
 `;
 
 const LokiForeground = styled.div`

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Loki } from '../index';
 
-import '../components/Loki.css';
+import '../style.scss';
 
 export default {
   title: 'Loki Text',
