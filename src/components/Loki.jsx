@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { returnUniqueFonts } from '../utils';
 
@@ -29,10 +30,10 @@ const LokiCharacter = styled.span`
 const LokiForeground = styled.div`
     backdrop-filter: blur(1.4px);
     position: absolute;
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    bottom: 0px;
+    top: -15px;
+    right: -15px;
+    left: -15px;
+    bottom: -15px;
     z-index: 10;
 `;
 
@@ -46,36 +47,45 @@ const LokiForeground = styled.div`
 //     glow: 1 // glow intensity
 // }
 
-export const Loki = ({ text, glow, blurFilter, finishedFn, animationTime, textChangeSpeed }) => {
-    const textArray = useMemo(() => text.split(''), [text.toUpperCase()]);
+export const Loki = ({
+  text, blurFilter, onFinish, animationTime, textChangeSpeed,
+}) => {
+  const textArray = useMemo(() => text.split(''), [text.toUpperCase()]);
 
-    const [fonts, setFonts] = useState(() => returnUniqueFonts(textArray.length));
+  const [fonts, setFonts] = useState(() => returnUniqueFonts(textArray.length));
 
-    useEffect(() => {
-       const interval = setInterval(() => {
-            setFonts(returnUniqueFonts(textArray.length));
-        }, textChangeSpeed);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFonts(returnUniqueFonts(textArray.length));
+    }, textChangeSpeed);
 
-        setTimeout(() => {
-            clearInterval(interval);
+    setTimeout(() => {
+      clearInterval(interval);
 
-            if (finishedFn) finishedFn();
-        }, animationTime);
-    }, [setFonts]);
+      if (onFinish) onFinish();
+    }, animationTime);
+  }, [setFonts]);
 
-    return (
-        <LokiContainer>
-            {blurFilter && <LokiForeground /> }
-            {textArray.map((char, index) => <LokiCharacter font={fonts[index]}>{char}</LokiCharacter>)}
-        </LokiContainer>
-    );
-}
+  return (
+    <LokiContainer>
+      {blurFilter && <LokiForeground /> }
+      {textArray.map((char, index) => <LokiCharacter font={fonts[index]}>{char}</LokiCharacter>)}
+    </LokiContainer>
+  );
+};
 
 Loki.defaultProps = {
-    glow: true,
-    text: 'LOKI',
-    blurFilter: true,
-    finishedFn: null,
-    animationTime: 15000,
-    textChangeSpeed: 500,
-}
+  text: 'LOKI',
+  blurFilter: true,
+  onFinish: null,
+  animationTime: 15000,
+  textChangeSpeed: 500,
+};
+
+Loki.propTypes = {
+  text: PropTypes.string,
+  blurFilter: PropTypes.bool,
+  animationTime: PropTypes.number,
+  textChangeSpeed: PropTypes.number,
+  onFinish: PropTypes.func,
+};
