@@ -69,7 +69,9 @@ export const Loki = ({
   return (
     <LokiContainer>
       {blurFilter && <LokiForeground /> }
-      {textArray.map((char, index) => <LokiCharacter font={fonts[index]}>{char}</LokiCharacter>)}
+      {textArray.map((char, index) => (
+        <LokiCharacter font={fonts[index]}>{char}</LokiCharacter>
+      ))}
     </LokiContainer>
   );
 };

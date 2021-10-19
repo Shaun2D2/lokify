@@ -10,12 +10,14 @@ const DEFAULT_FONTS = [
   "'UnifrakturCook', cursive",
 ];
 
+export const randomArrayElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
 export const randomFontSelection = (addedFonts = []) => {
   if (!Array.isArray(addedFonts)) throw new Error('must be an array of strings');
 
   const combinedFonts = [...DEFAULT_FONTS, ...addedFonts];
 
-  return combinedFonts[Math.floor(Math.random() * combinedFonts.length)];
+  return randomArrayElement(combinedFonts);
 };
 
 export const returnUniqueFonts = (count) => {
